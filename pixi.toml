@@ -11,8 +11,10 @@ version = "0.1.0"
 
 [dependencies]
 python = "3.12.*"
+jupyterlab = ">=4.3.0,<5"
+pixi-kernel = ">=0.5.1,<0.6"
 ipykernel = ">=6.29.5,<7"
 
 [pypi-dependencies]
-readii = ">=1.14.2, <2"
 med-imagetools = ">=1.5.8, <2"
+readii = ">=1.14.2, <2"
