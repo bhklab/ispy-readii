@@ -10,3 +10,11 @@
 rawdata*
 procdata/
 results/
+
+# Jupyter
+.ipynb_checkpoints
+
+logs/
+
+# Python
+__pycache__/
