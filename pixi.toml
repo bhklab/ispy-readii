@@ -11,6 +11,7 @@ version = "0.1.0"
 
 [dependencies]
 python = "3.12.*"
+ipykernel = ">=6.29.5,<7"
 
 [pypi-dependencies]
 readii = ">=1.14.2, <2"
