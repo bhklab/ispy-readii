@@ -1,26 +1,6 @@
 # ispy-readii
 Running READII to perform radiomic feature extraction on the I-SPY cohort for radiogenomic analysis.
 
-## Directory Structure
-Run the following command to set up the directory structure:
-```shell
-mkdir -p procdata rawdata results workflow/{config,envs,logs,notebooks,scripts}
-```
-
-You should now have the following directory structure:
-```bash
-├── README.md
-├── procdata        # output from any processing steps of rawdata
-├── rawdata         # data as it is downloaded from the source
-├── results         # final output from the pipeline
-└── workflow
-    ├── config
-    ├── envs
-    ├── logs
-    ├── notebooks   # Jupyter, R notebooks
-    └── scripts     # Where any code scripts are kept (Python, R, etc.)
-```
-
 ## Development
 
 ### Installing Pixi
@@ -57,6 +37,26 @@ pixi add <package_name>
 
 This will add the specified package to the `pixi.toml` file.
 
+
+## Directory Structure
+Run the following command in your terminal in the ispy-readii directory to set up the project directory structure:
+```shell
+mkdir -p procdata rawdata results workflow/{config,envs,logs,notebooks,scripts}
+```
+
+You should now have the following directory structure:
+```bash
+├── README.md
+├── procdata        # output from any processing steps of rawdata
+├── rawdata         # data as it is downloaded from the source
+├── results         # final output from the pipeline
+└── workflow
+    ├── config
+    ├── envs
+    ├── logs
+    ├── notebooks   # Jupyter, R notebooks
+    └── scripts     # Where any code scripts are kept (Python, R, etc.)
+```
 
 
 ## Contributing
