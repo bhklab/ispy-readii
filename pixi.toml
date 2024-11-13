@@ -10,3 +10,8 @@ version = "0.1.0"
 [tasks]
 
 [dependencies]
+python = "3.12.*"
+
+[pypi-dependencies]
+readii = ">=1.14.2, <2"
+med-imagetools = ">=1.5.8, <2"
