@@ -7,8 +7,6 @@ name = "ispy-readii"
 platforms = ["osx-arm64", "osx-64", "linux-64", "win-64"]
 version = "0.1.0"
 
-[tasks]
-
 [dependencies]
 python = "3.12.*"
 jupyterlab = ">=4.3.0,<5"
@@ -16,5 +14,8 @@ pixi-kernel = ">=0.5.1,<0.6"
 ipykernel = ">=6.29.5,<7"
 
 [pypi-dependencies]
-med-imagetools = ">=1.5.8, <2"
 readii = ">=1.16.0, <2"
+med-imagetools = "*"
+
+[tasks]
+make_kernel = "ipython kernel install --user --name=ispy_readii --display-name=ispy-readii"
