@@ -1,3 +1,4 @@
+# pixi install --manifest-path pixi.toml
 [project]
 authors = ["Katy Scott <k.l.scott16@gmail.com>",
            "Nasim Bondar Sahebi <sogolsahebi@gmail.com>"]
@@ -18,3 +19,4 @@ ipykernel = ">=6.29.5,<7"
 [pypi-dependencies]
 med-imagetools = ">=1.5.8, <2"
 readii = ">=1.16.0, <2"
+
