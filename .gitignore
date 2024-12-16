@@ -7,7 +7,7 @@
 .vscode
 
 # Data directories
-#rawdata*
+rawdata*
 procdata/
 results/
 
@@ -24,3 +24,4 @@ __pycache__/
 
 # Exclude MR directory but track other rawdata
 rawdata/Breast/ISPY2-100899/MR/
+
