@@ -12,6 +12,8 @@ python = "3.12.*"
 jupyterlab = ">=4.3.0,<5"
 pixi-kernel = ">=0.5.1,<0.6"
 ipykernel = ">=6.29.5,<7"
+numpy = "1.26.4.*"
+dcm2niix = ">=1.0.20241211,<2"
 
 [pypi-dependencies]
 readii = ">=1.16.0, <2"
