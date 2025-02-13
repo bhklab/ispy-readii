@@ -40,7 +40,7 @@ EOF
 
 chmod +x "$CONDA_PREFIX/etc/conda/activate.d/fsl_activate.sh" "$CONDA_PREFIX/etc/conda/deactivate.d/fsl_deactivate.sh"
 
-# Install additional Python dependencies
+# Install other dependencies
 echo "Installing additional Python dependencies..."
 pip install -q "readii>=1.16.0,<2" "med-imagetools" "scikit-image>=0.19.0"
 
@@ -51,7 +51,7 @@ python -m ipykernel install --user --name fsl-env --display-name "fsl-env"
 # Verify FSL installation
 echo "Verifying FSL installation..."
 if ! command -v fast &> /dev/null; then
-    echo "Warning: 'fast' command not found. Try restarting your terminal or running 'source ~/.bashrc'"
+    echo "Warning: 'fast' command not found"
     exit 1
 fi
 
