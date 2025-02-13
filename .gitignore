@@ -18,10 +18,3 @@ logs/
 
 # Python
 __pycache__/
-# pixi environments
-.pixi
-*.egg-info
-
-# Exclude MR directory but track other rawdata
-rawdata/Breast/ISPY2-100899/MR/
-
