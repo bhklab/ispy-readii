@@ -7,7 +7,7 @@
 .vscode
 
 # Data directories
-rawdata*
+#rawdata*
 procdata/
 results/
 
