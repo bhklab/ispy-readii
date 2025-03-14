@@ -1,6 +1,5 @@
 [project]
-authors = ["Katy Scott <k.l.scott16@gmail.com>",
-           "Nasim Bondar Sahebi <sogolsahebi@gmail.com>"]
+authors = ["Katy Scott <k.l.scott16@gmail.com>", "Nasim Bondar Sahebi <sogolsahebi@gmail.com>"]
 channels = ["conda-forge"]
 description = "Running READII on the I-SPY cohort for radiogenomic analysis."
 name = "ispy-readii"
@@ -24,8 +23,8 @@ h5py = ">=3.10.0"  # Match HDF5 version
 
 [pypi-dependencies]
 readii = ">=1.16.0, <2"
-med-imagetools = "*"
-scikit-image = ">=0.19.0"  # Ensure compatibility
+med-imagetools = "*"  # Ensure it's compatible with your system
+scikit-image = ">=0.18.3,<1"  # Ensure it's compatible with readii >= 1.16.0 and includes polygon2mask
 
 [tasks]
 make_kernel = "ipython kernel install --user --name=ispy_readii --display-name=ispy-readii"
