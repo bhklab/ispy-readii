@@ -1,7 +1,7 @@
 [project]
 authors = ["Katy Scott <k.l.scott16@gmail.com>", "Nasim Bondar Sahebi <sogolsahebi@gmail.com>"]
 channels = ["conda-forge"]
-description = "Running READII on the I-SPY cohort for radiogenomic analysis."
+description = "Running READII on the I-SPY2 cohort for radiogenomic analysis."
 name = "ispy-readii"
 platforms = ["osx-arm64", "osx-64", "linux-64", "win-64"]
 version = "0.1.0"
