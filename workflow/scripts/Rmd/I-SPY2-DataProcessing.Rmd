@@ -103,7 +103,7 @@ Load MultiAssayExperiment `.rds` File**
 This step extracts **clinical, expression(Microarray quantile normalizated), and annotation data** for further analysis.
 
 ```{r load multiassay and extract Data}
-# Define base directory
+# Define base directory.
 base_dir <- here()
 
 # Load dataset
