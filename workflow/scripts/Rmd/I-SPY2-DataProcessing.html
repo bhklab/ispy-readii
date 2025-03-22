@@ -5,9 +5,9 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="generator" content="pandoc" />
 
-        <meta name="author" content="Nasim Bondar Sahebi" />
+        <meta name="author" content="Nasim Bondar Sahebi and Katy Scott" />
     
-        <meta name="date" content="2025-03-13" />
+        <meta name="date" content="2025-03-19" />
     
     <title>I-SPY Project Data Processing</title>
 
@@ -1597,8 +1597,8 @@ margin-left: 0 !important;
       <li><a href="#merge-genomics-radiomics-data" id="toc-merge-genomics-radiomics-data">Merge Genomics &amp;
       Radiomics Data</a>
       <ul>
-      <li><a href="#verifying-segmentation-consistency-across-patients" id="toc-verifying-segmentation-consistency-across-patients">Verifying
-      Segmentation Consistency Across Patients</a></li>
+      <li><a href="#segmentation-consistency-check" id="toc-segmentation-consistency-check">Segmentation Consistency
+      Check</a></li>
       <li><a href="#segmentation-process-in-dce-mri" id="toc-segmentation-process-in-dce-mri">Segmentation Process in
       DCE-MRI</a></li>
       <li><a href="#segmentation-metadata" id="toc-segmentation-metadata">Segmentation Metadata</a></li>
@@ -1611,8 +1611,8 @@ margin-left: 0 !important;
     </div>
     <div id="postamble" data-toggle="wy-nav-shift" class="status">
                   <p class="author"><span class="glyphicon glyphicon-user"></span> Nasim
-Bondar Sahebi</p>
-                        <p class="date"><span class="glyphicon glyphicon-calendar"></span> 2025-03-13</p>
+Bondar Sahebi and Katy Scott</p>
+                        <p class="date"><span class="glyphicon glyphicon-calendar"></span> 2025-03-19</p>
           </div>
    </div>
      
@@ -1762,8 +1762,8 @@ Imaging Archive (ISPY2 Collection)</a>.</li>
 <p>Load MultiAssayExperiment <code>.rds</code> File<strong> This step
 extracts </strong>clinical, expression(Microarray quantile
 normalizated), and annotation data** for further analysis.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="co"># Define base directory</span></span>
-<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a>base_dir <span class="ot">&lt;-</span> <span class="fu">here</span>()</span>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="co"># Define base directory.</span></span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a>base_dir <span class="ot">&lt;-</span> <span class="fu">file.path</span>(<span class="fu">here</span>(), <span class="st">&quot;workflow&quot;</span>)</span>
 <span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a></span>
 <span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a><span class="co"># Load dataset</span></span>
 <span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a>mae <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="fu">file.path</span>(base_dir, <span class="st">&quot;Source Data/ICB_Wolf.rds&quot;</span>))</span>
@@ -78400,7 +78400,7 @@ treatment.</p>
 - <strong>File:</strong>
 <code>ISPY2-Imaging-Cohort-1-Clinical-Data.xlsx</code><br />
 - <strong>Access:</strong> <a href="https://www.cancerimagingarchive.net/collection/ispy2/">The Cancer
-Imaging Archive - ISPY2 Collection</a><br />
+Imaging Archive - I-SPY2 Collection</a><br />
 - <strong>Total Patients:</strong> <strong>985</strong><br />
 - <strong>719</strong> I-SPY2 cases<br />
 - <strong>266</strong> <a href="https://www.cancerimagingarchive.net/collection/ispy1/">ACRIN-6698
@@ -125548,8 +125548,8 @@ Not Hispanic or Latino
 </div>
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="co"># Save dataset as CSV</span></span>
 <span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a><span class="co"># write.csv(merged_clin, &quot;~/BHK lab/I-SPY-Project/output Data/Merged_clin_GenomicandRadiomic.csv&quot;, row.names = FALSE)</span></span></code></pre></div>
-<div id="verifying-segmentation-consistency-across-patients" class="section level3">
-<h3>Verifying Segmentation Consistency Across Patients</h3>
+<div id="segmentation-consistency-check" class="section level3">
+<h3>Segmentation Consistency Check</h3>
 <p>To ensure accurate <strong>Functional Tumor Volume (FTV)</strong>
 analysis in the I-SPY clinical trials, we verify that each patient has
 the expected <strong>4 segmentation masks</strong> from <strong>Dynamic
@@ -125568,23 +125568,28 @@ non-enhancing tissue.<br />
 connectivity.<br />
 5. <strong>OMIT Regions:</strong> Manual exclusion of non-tumor
 areas.</p>
-<p>note: <strong>Segmentation masks are stored as 2D DICOM
-images</strong> aligned with the original <strong>DCE MRI
-scans</strong>.<br />
+<p><strong>Segmentation masks are stored as 2D DICOM images</strong>
+aligned with the original <strong>DCE MRI scans</strong>.<br />
 note: <strong>Download masks from UCSF Box:</strong> <a href="https://ucsf.box.com/s/d09xetaatzgnz2p9bxlqh50rrzilgcoj">Link</a></p>
 </div>
 <div id="segmentation-metadata" class="section level3 tabset tabset-pills">
 <h3 class="tabset tabset-pills">Segmentation Metadata</h3>
 <div id="ispy1-mri-series-metadata" class="section level4">
 <h4>ISPY1: MRI Series Metadata</h4>
-<p>Metadata for ISPY1 is stored in
-<code>ispy1_dce_series_info.xlsx</code> with 221 patients. This dataset
-contains MRI series metadata for each patient, including:<br />
-- <strong>Patient ID &amp; Time Point (T1-T4)</strong><br />
-- <strong>MRI Series Description &amp; Unique ID</strong><br />
-- <strong>Signal Enhancement Ratio (SER) Calculation
+<p><strong>Metadata for ISPY1</strong> is stored in
+<code>ispy1_dce_series_info.xlsx</code>, containing data for <strong>221
+patients</strong>. This dataset includes MRI series metadata for each
+patient, covering:</p>
+<ul>
+<li><strong>Patient ID &amp; Time Point (T1–T4)</strong><br />
+</li>
+<li><strong>MRI Series Description &amp; Unique ID</strong><br />
+</li>
+<li><strong>Signal Enhancement Ratio (SER) Calculation
 Indicator</strong><br />
-- <strong>OMIT Region Counts (Non-Tumor Exclusion)</strong></p>
+</li>
+<li><strong>OMIT Region Counts (Non-Tumor Exclusion)</strong></li>
+</ul>
 <div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a><span class="co"># Load ISPY1 segmentation metadata</span></span>
 <span id="cb12-2"><a href="#cb12-2" tabindex="-1"></a>ispy1_dce_series_info <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(</span>
 <span id="cb12-3"><a href="#cb12-3" tabindex="-1"></a>  <span class="at">path =</span> <span class="fu">file.path</span>(base_dir, <span class="st">&quot;Source Data&quot;</span>, <span class="st">&quot;ispy1_dce_series_info.xlsx&quot;</span>), </span>
@@ -127983,11 +127988,20 @@ NA
 <div id="ispy2-mri-series-metadata" class="section level4">
 <h4>ISPY2: MRI Series Metadata</h4>
 <p>Metadata for ISPY2 was extracted from
-<code>series-data1741883133411.csv</code> with 719 patients.<br />
-- <strong>Subject.ID</strong> - <strong>Study.Description</strong>
-exmaple “ISPY2_MRI_T0” “ISPY2_MRI_T0” “ISPY2_MRI_T0” “ISPY2_MRI_T0”
-“ISPY2_MRI_T0” “ISPY2_MRI_T0” -<strong>“Number.of.images</strong>: “MR”
-“SEG”</p>
+<code>series-data1741883133411.csv</code>, containing data for
+<strong>719 patients</strong>. This dataset includes MRI series metadata
+for each patient, covering:</p>
+<ul>
+<li><strong>Subject ID</strong><br />
+</li>
+<li><strong>Study Description</strong> (e.g.,
+<code>&quot;ISPY2_MRI_T0&quot;</code>)<br />
+</li>
+<li><strong>Number of Images</strong><br />
+</li>
+<li><strong>Modality</strong> (e.g., <code>&quot;MR&quot;</code>,
+<code>&quot;SEG&quot;</code>)</li>
+</ul>
 <div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="co"># Load ISPY2 segmentation metadata</span></span>
 <span id="cb13-2"><a href="#cb13-2" tabindex="-1"></a>ispy2_dce_series_info <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="fu">file.path</span>(base_dir, <span class="st">&quot;Source Data&quot;</span>, <span class="st">&quot;series-data1741883133411.csv&quot;</span>))</span>
 <span id="cb13-3"><a href="#cb13-3" tabindex="-1"></a></span>

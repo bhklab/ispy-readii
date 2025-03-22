@@ -104,7 +104,7 @@ This step extracts **clinical, expression(Microarray quantile normalizated), and
 
 ```{r load multiassay and extract Data}
 # Define base directory.
-base_dir <- here()
+base_dir <- file.path(here(), "workflow")
 
 # Load dataset
 mae <- readRDS(file.path(base_dir, "Source Data/ICB_Wolf.rds"))
@@ -148,7 +148,6 @@ kable(head(annot, 20), caption = "Gene Annotation Data") %>%
   scroll_box(height = "400px")
 ```
 
-
 ### Match Patients: Genomics & Radiomics Integration
 
 This section identifies overlapping patients between genomics (gene expression) and radiomics (MRI scans) datasets.
@@ -159,7 +158,7 @@ The radiomics dataset contains dynamic contrast-enhanced MRI **(DCE-MRI)** scans
 
 **Metadata Source:**  
 - **File:** `ISPY2-Imaging-Cohort-1-Clinical-Data.xlsx`  
-- **Access:** [The Cancer Imaging Archive - ISPY2 Collection](https://www.cancerimagingarchive.net/collection/ispy2/)  
+- **Access:** [The Cancer Imaging Archive - I-SPY2 Collection](https://www.cancerimagingarchive.net/collection/ispy2/)  
 - **Total Patients:** **985**  
   - **719** I-SPY2 cases  
   - **266** [ACRIN-6698 cases](https://www.cancerimagingarchive.net/collection/ispy1/)  
@@ -175,6 +174,7 @@ kable(Radiomics_clin, caption = "Radiomics Clinical Data") %>%
 ```
 
 #### Step 2: Summary of Radiomics Data
+
 - **Each patient has 4 MRI scans (T1-T4)**
 - **MRI features include:**
   - Functional Tumor Volume (FTV)
@@ -243,7 +243,7 @@ kable(head(merged_clin,50), caption = "Merged Clinical Data (Genomics & Radiomic
 # write.csv(merged_clin, "~/BHK lab/I-SPY-Project/output Data/Merged_clin_GenomicandRadiomic.csv", row.names = FALSE)
 ```
 
-### Verifying Segmentation Consistency Across Patients 
+### Segmentation Consistency Check
 
 To ensure accurate **Functional Tumor Volume (FTV)** analysis in the I-SPY clinical trials, we verify that each patient has the expected **4 segmentation masks** from **Dynamic Contrast Enhanced (DCE) MRI** scans.  
 
@@ -256,18 +256,19 @@ Each scan undergoes multiple segmentation steps:
 4. **Connectivity Filter:** Ensures 3D tumor voxel connectivity.  
 5. **OMIT Regions:** Manual exclusion of non-tumor areas.  
 
-note: **Segmentation masks are stored as 2D DICOM images** aligned with the original **DCE MRI scans**.  
+**Segmentation masks are stored as 2D DICOM images** aligned with the original **DCE MRI scans**.  
 note: **Download masks from UCSF Box:** [Link](https://ucsf.box.com/s/d09xetaatzgnz2p9bxlqh50rrzilgcoj)  
 
 
 ### Segmentation Metadata {.tabset .tabset-pills}
 
 #### ISPY1: MRI Series Metadata  
-Metadata for ISPY1 is stored in `ispy1_dce_series_info.xlsx` with 221 patients. This dataset contains MRI series metadata for each patient, including:  
-- **Patient ID & Time Point (T1-T4)**  
+**Metadata for ISPY1** is stored in `ispy1_dce_series_info.xlsx`, containing data for **221 patients**. This dataset includes MRI series metadata for each patient, covering:  
+
+- **Patient ID & Time Point (T1–T4)**  
 - **MRI Series Description & Unique ID**  
 - **Signal Enhancement Ratio (SER) Calculation Indicator**  
-- **OMIT Region Counts (Non-Tumor Exclusion)**  
+- **OMIT Region Counts (Non-Tumor Exclusion)**   
 
 ```{r ISPY1 segmentation metadata}
 # Load ISPY1 segmentation metadata
@@ -284,10 +285,12 @@ kable(head(ispy1_dce_series_info, 20), caption = "DCE MRI Series Information") %
 
 #### ISPY2: MRI Series Metadata  
 
-Metadata for ISPY2 was extracted from `series-data1741883133411.csv` with 719 patients.  
-- **Subject.ID**
-- **Study.Description** exmaple "ISPY2_MRI_T0" "ISPY2_MRI_T0" "ISPY2_MRI_T0" "ISPY2_MRI_T0" "ISPY2_MRI_T0" "ISPY2_MRI_T0"
--**"Number.of.images**: "MR"  "SEG"
+Metadata for ISPY2 was extracted from `series-data1741883133411.csv`, containing data for **719 patients**. This dataset includes MRI series metadata for each patient, covering:  
+
+- **Subject ID**  
+- **Study Description** (e.g., `"ISPY2_MRI_T0"`)  
+- **Number of Images**  
+- **Modality** (e.g., `"MR"`, `"SEG"`)  
 
 ```{r segmentation metadata}
 # Load ISPY2 segmentation metadata
@@ -312,7 +315,6 @@ ispy2_selected <- ispy2_dce_series_info[, c("PATIENT_ID", "TIME_POINT")]
 ispy1and2 <- merge(ispy1_selected, ispy2_selected, by = c("PATIENT_ID", "TIME_POINT"), all = TRUE)
 ```
 
-
 ### Check Segmentation Consistency Across Time Points (T1-T4)  
 
 Each patient (Total: 940) should have at least four segmentation masks, corresponding to their four MRI scans.
@@ -332,7 +334,6 @@ kable(series_per_patient, caption = "Segmentation Counts per Patient") %>%
   scroll_box(height = "400px")
 ```
 
-
 ### Patients with Missing Segmentations
 
 Patients missing **one or more segmentation masks** need further review (24 patients).
@@ -348,4 +349,3 @@ kable(patients_less_than_4, caption = "Patients with Less Than 4 Segmentation Ma
   kable_styling(bootstrap_options = c("striped", "hover", "condensed"), full_width = FALSE) %>%
   scroll_box(height = "400px")
 ```
-
