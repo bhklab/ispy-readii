@@ -9,7 +9,7 @@
 # Data directories
 #rawdata*
 procdata/
-results/
+# results/  # dd the results to github
 
 # Jupyter
 .ipynb_checkpoints
