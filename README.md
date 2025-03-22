@@ -80,5 +80,6 @@ Please use the following angular commit message format:
 - `perf`: A code change that improves performance.
 - `test`: Changes to the test framework.
 - `build`: Changes to the build process or tools.
+- `chore`: Other changes that don’t modify src or test files (e.g., removing files, updating deps, renaming folders, updating configs)
 
 `scope` is an optional keyword that provides context for where the change was made. It can be anything relevant to your package or development workflow (e.g., it could be the module or function - name affected by the change).
