@@ -19,3 +19,5 @@ logs/
 # Python
 __pycache__/
 .Rproj.user
+
+.DS_Store
