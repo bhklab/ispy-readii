@@ -7,9 +7,9 @@
 .vscode
 
 # Data directories
-#rawdata*
-procdata/
-results/
+rawdata/*
+procdata/*
+# results
 
 # Jupyter
 .ipynb_checkpoints
