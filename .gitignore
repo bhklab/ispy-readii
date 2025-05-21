@@ -7,9 +7,9 @@
 .vscode
 
 # Data directories
-rawdata*
-procdata/
-results/
+rawdata/*
+procdata/*
+# results
 
 # Jupyter
 .ipynb_checkpoints
@@ -18,5 +18,6 @@ logs/
 
 # Python
 __pycache__/
+.Rproj.user
 
 .DS_Store

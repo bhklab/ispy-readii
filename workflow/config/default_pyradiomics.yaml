@@ -1,21 +1,9 @@
 imageType:
     Original: {}
-    Wavelet: {}
-    Square: {}
-    SquareRoot: {}
-    Logarithm: {}
-    Exponential: {}
-    Gradient: {}
 
 featureClass:
     shape: 
-    firstorder:
-    glcm: 
-    glrlm: 
-    glszm: 
-    gldm:
-    ngtdm: 
-
+    
 setting:
     binWidth: 25
     resampledPixelSpacing: [1., 1., 1.]

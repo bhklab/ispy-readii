@@ -1,8 +1,7 @@
 [project]
-authors = ["Katy Scott <k.l.scott16@gmail.com>",
-           "Nasim Bondar Sahebi <sogolsahebi@gmail.com>"]
+authors = ["Katy Scott <k.l.scott16@gmail.com>", "Nasim Bondar Sahebi <sogolsahebi@gmail.com>"]
 channels = ["conda-forge"]
-description = "Running READII on the I-SPY cohort for radiogenomic analysis."
+description = "Running READII on the I-SPY2 cohort for radiogenomic analysis."
 name = "ispy-readii"
 platforms = ["osx-arm64", "osx-64", "linux-64", "win-64"]
 version = "0.1.0"
@@ -14,10 +13,18 @@ pixi-kernel = ">=0.5.1,<0.6"
 ipykernel = ">=6.29.5,<7"
 numpy = "1.26.4.*"
 dcm2niix = ">=1.0.20241211,<2"
+boost-cpp = ">=1.81.0,<1.81.1.0a0"
+libblas = ">=3.9.0,<4.0a0"
+liblapack = ">=3.9.0,<4"
+zlib = ">=1.3.1,<2"
+fslpy = ">=3.21.1,<4"
+hdf5 = "1.14.4.*"  # Ensure it matches version
+h5py = ">=3.10.0"  # Match HDF5 version 
 
 [pypi-dependencies]
 readii = ">=1.16.0, <2"
-med-imagetools = "*"
+med-imagetools = "*"  # Ensure it's compatible with your system
+scikit-image = ">=0.18.3,<1"  # Ensure it's compatible with readii >= 1.16.0 and includes polygon2mask
 
 [tasks]
 make_kernel = "ipython kernel install --user --name=ispy_readii --display-name=ispy-readii"
